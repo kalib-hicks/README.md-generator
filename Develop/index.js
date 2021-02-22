@@ -1,11 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
-const { writeFile, copyFile } = require
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
     return inquirer.prompt([
+
 // TITLE OF PROJECT - REQUIRED
         {
             type: 'input',
@@ -85,8 +85,20 @@ const promptUser = () => {
     message: 'Provide some test instructions for your project:',
     when: ({ confirmTest }) => confirmTest
   }
-  // CHOOSE LICENSE - REQUIRED
-  {
+ 
+    ]);
+  };
+  
+  const promptProject = readmeData => {
+    console.log(`
+=================
+Add a New README.md
+=================
+`);
+
+
+// CHOOSE LICENSE - REQUIRED
+ {
     type: 'input',
     name: 'license',
     message: 'Choose the license you would like for your project.',
@@ -101,19 +113,43 @@ const promptUser = () => {
   },
 
 
-
-     
-    ]);
-  };
-  
-  const promptProject = portfolioData => {
-    console.log(`
+ 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Successful")
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {}
 
-// Function call to initialize app
+
+
+promptUser()
+  .then(promptProject)
+  .then(readmeData => {
+    return generateMarkdown(readmeData);
+  })
+  .then(pageREADME => {
+    return writeFile(pageREADME);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile();
+  })
+  .then(copyFileResponse => {
+    console.log(copyFileResponse);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+
+
+  // Function call to initialize app
 init();
