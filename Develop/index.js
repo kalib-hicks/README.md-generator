@@ -92,7 +92,7 @@ const questions = [
     type: 'checkbox',
     name: 'license'
     ,message: 'Please choose a license from the list provided.',
-    choices: ['1', '2', '3', '4',]
+    choices: ['Apache 2.0 License', 'Boost Software License 1.0', 'BSD 3-Clause License', 'The MIT License',]
     ,validate: (licenseInput) => {
         if(licenseInput) {
             return true;
