@@ -4,6 +4,7 @@ const generateMarkdown = require('./utils/generateMarkdown.js');
 const fs = require('fs');
 const util = require('util');
 
+
 // TODO: Create an array of questions for user input
 const questions = [
 
@@ -87,6 +88,21 @@ const questions = [
     when: ({ confirmTest }) => confirmTest
   },
  
+// CREDITS - NOT REQUIRED
+
+{
+  type: 'confirm',
+  name: 'confirmCredits',
+  message: 'Would you like to credit any assistance you used for your project?',
+  default: true
+},
+{
+  type: 'input',
+  name: 'testCredits',
+  message: 'Provide some credits for any assistanceyou used your project:',
+  when: ({ confirmCredits }) => confirmCredits
+},
+
 // CHOOSE LICENSE - REQUIRED
 {
     type: 'checkbox',
@@ -136,27 +152,17 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const content = data.title + data.description + data.instructions + data.usage + data.guidelines + data.test + data.license + data.github + data.email
-    fs.writeFile(fileName, data, err => {
-        if (err) {
-            return console.log(err);
-        }
-        console.log("Your README has been created.")
-    });
+  fs.writeFile(fileName, data, err => {
+    if(err) {
+      return console.log(err);
+    }
+    console.log("Your README has been created.")
+  });
 }
-
-// TODO: Create a function to initialize app
-const writeFileAsync = util.promisify(writeToFile); 
-async function init() {
-  try {
-    const userResponses = await inquirer.prompt(questions);
-    console.log("README Generated")
-    const markdown = generateMarkdown(userResponses);
-    console.log(markdown);
-  }
-finally{
-}
-}
+  const writeFileAsync = util.promisify(writeToFile); 
+  // TODO: Create a function to initialize app
 
   // Function call to initialize app
-init();
+  init();
+
+
