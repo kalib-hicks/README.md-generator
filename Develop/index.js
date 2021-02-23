@@ -154,7 +154,7 @@ async function init() {
     const markdown = generateMArkdown(userResponses);
     console.log(markdown);
   }
-}
+};
 
 
   // Function call to initialize app
