@@ -140,34 +140,12 @@ function writeToFile(fileName, data) {
         if (err) {
             return console.log(err);
         }
-        console.log("Successful")
+        console.log("Your README has been created.")
     });
 }
 
 // TODO: Create a function to initialize app
 function init() {}
-
-
-
-promptUser()
-  .then(promptProject)
-  .then(readmeData => {
-    return generateMarkdown(readmeData);
-  })
-  .then(pageREADME => {
-    return writeFile(pageREADME);
-  })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then(copyFileResponse => {
-    console.log(copyFileResponse);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-
 
 
   // Function call to initialize app
