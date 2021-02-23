@@ -1,10 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
+const fs = require('fs');
+const util = require('util');
 
 // TODO: Create an array of questions for user input
-const promptUser = () => {
-    return inquirer.prompt([
+const questions = [
 
 // TITLE OF PROJECT - REQUIRED
         {
@@ -86,33 +87,51 @@ const promptUser = () => {
     when: ({ confirmTest }) => confirmTest
   }
  
-    ]);
-  };
-  
-  const promptProject = readmeData => {
-    console.log(`
-=================
-Add a New README.md
-=================
-`);
-
-
 // CHOOSE LICENSE - REQUIRED
- {
+{
+    type: 'checkbox',
+    name: 'license'
+    message: 'Please choose a license from the list provided.',
+    choices: ['1', '2', '3', '4',]
+    validate: (licenseInput) => {
+        if(licenseInput) {
+            return true;
+        } else {
+            console.log('You must choose a license for your project.');
+            return false;
+        }
+    } 
+}
+
+// GITHUB USERNAME - REQUIRED
+{
     type: 'input',
-    name: 'license',
-    message: 'Choose the license you would like for your project.',
-    validate: githubGuidelines => {
-      if (githubInput) {
-        return true;
-      } else {
-        console.log('You must enter your GitHub username.');
-        return false;
-      }
+    name: 'github',
+    message: 'Enter your GitHub username.',
+    validate: (githubInput) => {
+        if (githubInput) {
+            return true;
+        } else {
+            console.log('You must enter your GitHub username.');
+            return false;
+        }
+}
+
+// EMAIL ADDRESS - REQUIRED
+{
+    type: 'input',
+    name: 'email',
+    message: 'Enter your email address.',
+    validate: (emailInput) => {
+        if (emailInput) {
+            return true;
+        } else {
+            console.log('You must enter your email address.');
+            return false;
+        }
     }
-  },
-
-
+}
+]
  
 
 // TODO: Create a function to write README file
