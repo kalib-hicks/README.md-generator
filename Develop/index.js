@@ -33,7 +33,7 @@ const questions = [
         name: 'description',
         message: 'Provide some information about your project:',
         when: ({ confirmDescription }) => confirmDescription
-      }
+      },
 // INSTRUCTIONS FOR PROJECT - not required
       {
         type: 'confirm',
@@ -46,7 +46,7 @@ const questions = [
         name: 'instructions',
         message: 'Provide some instructions for your project:',
         when: ({ confirmInstructions }) => confirmInstructions
-      }
+      },
 // USAGE FOR PROJECT - NOT REQUIRED
       {
         type: 'confirm',
@@ -59,7 +59,7 @@ const questions = [
         name: 'usage',
         message: 'Provide some usage information for your project:',
         when: ({ confirmUsage }) => confirmUsage
-      }
+      },
 // CONTRIBUTING GUIDELINES - NOT REQUIRED
 {
     type: 'confirm',
@@ -72,7 +72,7 @@ const questions = [
     name: 'guidelines',
     message: 'Provide some guidelines for your project:',
     when: ({ confirmGuidelines }) => confirmGuidelines
-  }
+  },
 // TEST INSTRUCTIONS - NOT REQUIRED
 {
     type: 'confirm',
@@ -85,15 +85,15 @@ const questions = [
     name: 'test',
     message: 'Provide some test instructions for your project:',
     when: ({ confirmTest }) => confirmTest
-  }
+  },
  
 // CHOOSE LICENSE - REQUIRED
 {
     type: 'checkbox',
     name: 'license'
-    message: 'Please choose a license from the list provided.',
+    ,message: 'Please choose a license from the list provided.',
     choices: ['1', '2', '3', '4',]
-    validate: (licenseInput) => {
+    ,validate: (licenseInput) => {
         if(licenseInput) {
             return true;
         } else {
@@ -101,7 +101,7 @@ const questions = [
             return false;
         }
     } 
-}
+},
 
 // GITHUB USERNAME - REQUIRED
 {
@@ -116,7 +116,7 @@ const questions = [
             return false;
         }
 }
-
+},
 // EMAIL ADDRESS - REQUIRED
 {
     type: 'input',
@@ -140,34 +140,21 @@ function writeToFile(fileName, data) {
         if (err) {
             return console.log(err);
         }
-        console.log("Your README is done!")
+        console.log("Your README has been created.")
     });
 }
 
 // TODO: Create a function to initialize app
-function init() {}
-
-
-
-promptUser()
-  .then(promptProject)
-  .then(readmeData => {
-    return generateMarkdown(readmeData);
-  })
-  .then(pageREADME => {
-    return writeFile(pageREADME);
-  })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then(copyFileResponse => {
-    console.log(copyFileResponse);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-
+const writeFileAsync = util.promisify(writeToFile); 
+// TODO: Create a function to initialize app
+async function init() {
+  try {
+    const userResponses = await inquirer.prompt(questions);
+    console.log("README Generated")
+    const markdown = generateMArkdown(userResponses);
+    console.log(markdown);
+  }
+}
 
 
   // Function call to initialize app

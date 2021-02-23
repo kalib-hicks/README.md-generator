@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/kalib-hicks/README.md-generator/issues"
   },
-  "homepage": "https://github.com/kalib-hicks/README.md-generator#readme"
+  "homepage": "https://github.com/kalib-hicks/README.md-generator#readme",
+  "dependencies": {
+    "core-util-is": "^1.0.2",
+    "webpack-dev-server": "^3.11.2"
+  }
 }
