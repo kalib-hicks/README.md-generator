@@ -10,7 +10,7 @@ const questions = [
 // TITLE OF PROJECT - REQUIRED
         {
             type: 'input',
-            name: 'title',
+            name: 'titleInput',
             message: 'Enter your project title.',
             validate: titleInput => {
               if (titleInput) {
@@ -30,7 +30,7 @@ const questions = [
       },
       {
         type: 'input',
-        name: 'description',
+        name: 'descriptionInput',
         message: 'Provide some information about your project:',
         when: ({ confirmDescription }) => confirmDescription
       },
@@ -43,7 +43,7 @@ const questions = [
       },
       {
         type: 'input',
-        name: 'instructions',
+        name: 'instructionsInput',
         message: 'Provide some instructions for your project:',
         when: ({ confirmInstructions }) => confirmInstructions
       },
@@ -56,7 +56,7 @@ const questions = [
       },
       {
         type: 'input',
-        name: 'usage',
+        name: 'usageInput',
         message: 'Provide some usage information for your project:',
         when: ({ confirmUsage }) => confirmUsage
       },
@@ -69,7 +69,7 @@ const questions = [
   },
   {
     type: 'input',
-    name: 'guidelines',
+    name: 'guidelinesInput',
     message: 'Provide some guidelines for your project:',
     when: ({ confirmGuidelines }) => confirmGuidelines
   },
@@ -82,7 +82,7 @@ const questions = [
   },
   {
     type: 'input',
-    name: 'test',
+    name: 'testInput',
     message: 'Provide some test instructions for your project:',
     when: ({ confirmTest }) => confirmTest
   },
@@ -90,9 +90,9 @@ const questions = [
 // CHOOSE LICENSE - REQUIRED
 {
     type: 'checkbox',
-    name: 'license'
+    name: 'licenseInput'
     ,message: 'Please choose a license from the list provided.',
-    choices: ['Apache 2.0 License', 'Boost Software License 1.0', 'BSD 3-Clause License', 'The MIT License',]
+    choices: ['Apache 2.0 License', 'Boost Software License 1.0', 'BSD 3-Clause License',]
     ,validate: (licenseInput) => {
         if(licenseInput) {
             return true;
@@ -106,7 +106,7 @@ const questions = [
 // GITHUB USERNAME - REQUIRED
 {
     type: 'input',
-    name: 'github',
+    name: 'githubInput',
     message: 'Enter your GitHub username.',
     validate: (githubInput) => {
         if (githubInput) {
@@ -120,7 +120,7 @@ const questions = [
 // EMAIL ADDRESS - REQUIRED
 {
     type: 'input',
-    name: 'email',
+    name: 'emailInput',
     message: 'Enter your email address.',
     validate: (emailInput) => {
         if (emailInput) {
@@ -132,10 +132,11 @@ const questions = [
     }
 }
 ]
- 
+
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
+    const content = data.title + data.description + data.instructions + data.usage + data.guidelines + data.test + data.license + data.github + data.email
     fs.writeFile(fileName, data, err => {
         if (err) {
             return console.log(err);
@@ -146,16 +147,16 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 const writeFileAsync = util.promisify(writeToFile); 
-// TODO: Create a function to initialize app
 async function init() {
   try {
     const userResponses = await inquirer.prompt(questions);
     console.log("README Generated")
-    const markdown = generateMArkdown(userResponses);
+    const markdown = generateMarkdown(userResponses);
     console.log(markdown);
   }
-};
-
+finally{
+}
+}
 
   // Function call to initialize app
 init();
