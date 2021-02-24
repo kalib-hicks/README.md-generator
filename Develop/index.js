@@ -152,31 +152,31 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, err => {
-    if(err) {
-      return console.log(err);
-    }
-    console.log("Your README has been created.")
-  });
-}
+  fs.writeFile(fileName, data, eror => {
+      if(eror) {
+          return console.log(eror);
+      }
+          console.log("Your README has been created.")
+  
+      });
+  }
   const writeFileAsync = util.promisify(writeToFile); 
   // TODO: Create a function to initialize app
   async function init() {
-    try {
-
-        const userResponses = await inquirer.prompt(questions);
-     
-        console.log("Generating your README next...")
-        const markdown = generateMarkdown(userResponses);
-        console.log(markdown);
-    
-    
-        await writeFileAsync('./GeneratedREADME.md', markdown);
-
-    } catch (error) {
-        console.log(error);
-    }
-};
+      try {
+  
+          const userResponses = await inquirer.prompt(questions);
+       
+          const markdown = generateMarkdown(userResponses);
+          console.log(markdown);
+      
+      
+          await writeFileAsync('./YourREADME.md', markdown);
+  
+      } catch (error) {
+          console.log(error);
+      }
+  };
   // Function call to initialize app
   init();
 

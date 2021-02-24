@@ -7,11 +7,13 @@
 * [Usage](#usage)
 * [Guidelines](#guidelines)
 * [Test](#test)
+* [Credits](#credits)
 * [License](#license)
+* [Questions](#questions)
 
 
 ## Description
-
+y
 
 ## Instructions
 y
@@ -20,7 +22,7 @@ y
 y
 
 ## Guidelines
-
+y
 
 ## Test
 y
@@ -29,7 +31,12 @@ y
 y
 
 ## License
-Apache 2.0 License[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+
+## Questions
+Any questions can be directed to me here: 
+Github link - undefined
+or
+Email - undefined
 
 
