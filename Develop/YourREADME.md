@@ -39,8 +39,8 @@ Apache 2.0 License
 
 ## Questions
 Any questions can be directed to me here: 
-Github link - undefined
+Github link - https://github.com/kalib-hicks
 or
-Email - undefined
+email - kalib.hicks@gmail.com
 
 
